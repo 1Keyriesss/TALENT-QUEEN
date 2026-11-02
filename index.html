@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Talent Queen - Premium Membership</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: white;
+            background:
+                radial-gradient(circle at 50% 0%, #5b1c78 0%, #1b0b25 30%, #070509 70%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: #9b3fd0;
+            filter: blur(160px);
+            opacity: 0.15;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 55px 20px;
+        }
+
+        /* ===== HEADER ===== */
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .brand {
+            font-size: clamp(45px, 8vw, 75px);
+            font-weight: 900;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #dca5ff,
+                #ffffff,
+                #a94de0
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            filter:
+                drop-shadow(0 0 8px rgba(180, 80, 230, 0.5))
+                drop-shadow(0 0 30px rgba(140, 50, 190, 0.3));
+        }
+
+        .line {
+            width: 90px;
+            height: 3px;
+            margin: 18px auto;
+            border-radius: 10px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #b34ee8,
+                transparent
+            );
+        }
+
+        .subtitle {
+            color: #b9a3c3;
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        /* ===== CONTENT ===== */
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .intro {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .label {
+            display: inline-block;
+            width: fit-content;
+            padding: 8px 16px;
+            border: 1px solid #71368d;
+            border-radius: 30px;
+            color: #d7a8f2;
+            background: rgba(115, 44, 145, 0.12);
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
+        }
+
+        .intro h2 {
+            font-size: 40px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .intro h2 span {
+            color: #b45ce8;
+        }
+
+        .intro p {
+            color: #a99cac;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* ===== CARD ===== */
+
+        .card {
+            position: relative;
+            padding: 35px;
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(42, 18, 55, 0.95),
+                    rgba(13, 9, 16, 0.98)
+                );
+
+            border: 1px solid rgba(150, 73, 191, 0.45);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                0 0 45px rgba(104, 35, 145, 0.12);
+        }
+
+        .popular {
+            position: absolute;
+            top: -13px;
+            right: 25px;
+
+            background: linear-gradient(
+                135deg,
+                #9b45d1,
+                #592078
+            );
+
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            color: #bfa7ca;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .price {
+            margin-top: 12px;
+            font-size: 48px;
+            font-weight: 800;
+        }
+
+        .permanent {
+            color: #b783d0;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+
+        /* ===== FEATURES ===== */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 28px 0;
+        }
+
+        .feature {
+            padding: 17px 10px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+        }
+
+        .feature-icon {
+            font-size: 22px;
+            margin-bottom: 9px;
+        }
+
+        .feature p {
+            color: #cfc3d4;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* ===== BUTTON ===== */
+
+        .buttons {
+            display: grid;
+            gap: 12px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            text-decoration: none;
+            padding: 16px;
+
+            border-radius: 14px;
+            font-weight: bold;
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-admin {
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #963ed0,
+                #5d2080
+            );
+
+            box-shadow:
+                0 10px 30px rgba(126, 45, 170, 0.25);
+        }
+
+        .btn-preview {
+            color: #d8b0ed;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid #633276;
+        }
+
+        /* ===== FOOTER ===== */
+
+        .bottom {
+            margin-top: 35px;
+            text-align: center;
+            color: #685d6c;
+            font-size: 11px;
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 750px) {
+
+            .page {
+                padding: 40px 16px;
+            }
+
+            .header {
+                margin-bottom: 30px;
+            }
+
+            .brand {
+                font-size: 42px;
+                letter-spacing: 4px;
+            }
+
+            .subtitle {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .intro {
+                text-align: center;
+                padding: 15px 10px;
+            }
+
+            .label {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .intro h2 {
+                font-size: 30px;
+            }
+
+            .card {
+                padding: 28px 20px;
+            }
+
+            .price {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-align: left;
+            }
+
+            .feature-icon {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <header class="header">
+
+        <div class="brand">
+            TALENT QUEEN
+        </div>
+
+        <div class="line"></div>
+
+        <div class="subtitle">
+            Premium Membership
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+        <div class="intro">
+
+            <span class="label">
+                PREMIUM EXPERIENCE
+            </span>
+
+            <h2>
+                Satu akses.<br>
+                <span>Lebih banyak pengalaman.</span>
+            </h2>
+
+            <p>
+                Bergabung dengan membership premium dan
+                dapatkan akses ke berbagai fasilitas serta
+                pembaruan konten secara berkala.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="popular">
+                PREMIUM
+            </div>
+
+            <div class="card-title">
+                Membership
+            </div>
+
+            <div class="price">
+                Rp20.000
+            </div>
+
+            <div class="permanent">
+                Akses permanen
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">👑</div>
+                    <p>
+                        Akses<br>
+                        Grup VIP
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <p>
+                        Update<br>
+                        Tiap Minggu
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">▶</div>
+                    <p>
+                        Pengalaman<br>
+                        Tanpa Iklan
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a
+                    href="#"
+                    class="btn btn-admin"
+                >
+                    ✈️ Hubungi Admin
+                </a>
+
+                <a
+                    href="#"
+                    class="btn btn-preview"
+                >
+                    👁 Lihat Preview
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="bottom">
+        © 2026 Talent Queen · Premium Membership
+    </div>
+
+</div>
+
+</body>
+</html>
